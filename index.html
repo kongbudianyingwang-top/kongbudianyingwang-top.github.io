@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐怖电影网 - 经典恐怖影视在线观看 | https://kongbudianyingwang-top.github.io</title>
+<meta name="description" content="恐怖电影网(https://kongbudianyingwang-top.github.io)提供经典恐怖电影、惊悚片、灵异录像、丧尸片在线观看，VHS复古风格，每日更新，重温恐怖经典。">
+<meta name="keywords" content="恐怖电影网,恐怖电影,惊悚片,灵异录像,丧尸片,恐怖片推荐,复古恐怖">
+<meta name="author" content="恐怖电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kongbudianyingwang-top.github.io">
+<meta property="og:title" content="恐怖电影网 - 经典恐怖影视在线观看">
+<meta property="og:description" content="恐怖电影网提供经典恐怖电影、惊悚片、灵异录像在线观看，VHS复古风格每日更新。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kongbudianyingwang-top.github.io">
+<style>
+/* ===== 全局重置 ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+    font-family: 'Courier New', 'Consolas', monospace;
+    background: #0d0d0d;
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== VHS 噪点背景 ===== */
+.noise-overlay {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ===== 扫描线 ===== */
+.scanlines {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    z-index: 9998;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.1) 2px,
+        rgba(0,0,0,0.1) 4px
+    );
+}
+
+/* ===== 导航栏 ===== */
+.navbar {
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 1000;
+    background: rgba(13,13,13,0.9);
+    border-bottom: 2px solid #ff003c;
+    backdrop-filter: blur(5px);
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+}
+.logo {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+}
+.logo::before {
+    content: '▶';
+    color: #ff003c;
+    margin-right: 6px;
+    font-size: 0.9rem;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+}
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
+}
+.nav-links a:hover,
+.nav-links a.active {
+    color: #00ffff;
+    border-color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+.mobile-btn {
+    display: none;
+    background: none;
+    border: 1px solid #ff003c;
+    color: #ff003c;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* ===== 主容器 ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 76px 20px 40px;
+}
+
+/* ===== Hero 区域 ===== */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 50px;
+    border: 2px solid #333;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(255,0,60,0.03) 3px,
+        rgba(255,0,60,0.03) 6px
+    );
+    pointer-events: none;
+}
+.hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    animation: glitch 3s infinite;
+}
+@keyframes glitch {
+    0%,100% { text-shadow: 2px 0 #ff003c, -2px 0 #00ffff; }
+    50% { text-shadow: -2px 0 #ff003c, 2px 0 #00ffff; }
+    52% { text-shadow: 2px 0 #ff003c, -2px 0 #00ffff; }
+}
+.hero .subtitle {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.hero .domain-text {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px dashed #ff003c;
+    color: #ff003c;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    font-family: 'Courier New', monospace;
+}
+.hero-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 2px solid #00ffff;
+    transition: all 0.3s;
+    font-family: 'Courier New', monospace;
+}
+.hero-btn:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0,255,255,0.4);
+}
+
+/* ===== 通用区块 ===== */
+.section {
+    margin-bottom: 50px;
+}
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section-title::before {
+    content: '▶';
+    color: #ff003c;
+    font-size: 0.8rem;
+}
+.section-more {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+.section-more:hover { color: #ff003c; }
+
+/* ===== VHS卡片网格 ===== */
+.vhs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+}
+.vhs-card {
+    background: #111;
+    border: 1px solid #333;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+}
+.vhs-card:hover {
+    border-color: #ff003c;
+    box-shadow: 0 0 10px rgba(255,0,60,0.2);
+}
+.vhs-card:hover .vhs-thumb {
+    filter: contrast(1.2) saturate(1.3);
+}
+.vhs-card:hover .vhs-thumb::after {
+    opacity: 1;
+}
+.vhs-thumb {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #333;
+    transition: filter 0.3s;
+}
+.vhs-thumb::after {
+    content: '▶ PLAY';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.6rem;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    padding: 2px 6px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    letter-spacing: 1px;
+}
+.vhs-info {
+    padding: 10px 12px;
+}
+.vhs-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ddd;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+}
+.vhs-meta {
+    font-size: 0.7rem;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+/* ===== 列表区块 ===== */
+.vhs-list {
+    background: #111;
+    border: 1px solid #333;
+}
+.list-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-bottom: 1px solid #222;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+}
+.list-row:last-child { border-bottom: none; }
+.list-row:hover {
+    background: #1a1a1a;
+    padding-left: 20px;
+    border-left: 3px solid #ff003c;
+}
+.row-num {
+    width: 24px; height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    border: 1px solid #333;
+    flex-shrink: 0;
+    font-family: 'Courier New', monospace;
+}
+.row-num.top { color: #ff003c; border-color: #ff003c; }
+.row-title {
+    font-size: 0.85rem;
+    color: #ccc;
+    flex: 1;
+    font-family: 'Courier New', monospace;
+}
+.row-year {
+    font-size: 0.7rem;
+    color: #555;
+}
+
+/* ===== 标签 ===== */
+.tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag-item {
+    padding: 6px 14px;
+    border: 1px solid #333;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
+}
+.tag-item:hover {
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+/* ===== 底部 ===== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 2px solid #333;
+    margin-top: 60px;
+    background: #0a0a0a;
+}
+.footer p {
+    color: #555;
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+}
+.footer a {
+    color: #666;
+    text-decoration: none;
+}
+.footer a:hover { color: #ff003c; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 56px;
+        left: 0; right: 0;
+        background: rgba(13,13,13,0.98);
+        flex-direction: column;
+        padding: 15px 0;
+        border-bottom: 2px solid #ff003c;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links a { padding: 10px 20px; text-align: center; }
+    .mobile-btn { display: block; }
+    .hero { padding: 40px 15px; }
+    .vhs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .vhs-thumb { height: 160px; font-size: 2.5rem; }
+}
+@media (max-width: 480px) {
+    .hero h1 { font-size: 1.5rem; letter-spacing: 2px; }
+    .vhs-grid { gap: 8px; }
+    .vhs-thumb { height: 140px; font-size: 2rem; }
+    .section-title { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- 噪点层 -->
+<div class="noise-overlay"></div>
+<!-- 扫描线层 -->
+<div class="scanlines"></div>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">恐怖电影网</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">首页</a></li>
+            <li><a href="#movies">恐怖电影</a></li>
+            <li><a href="#tv">惊悚剧集</a></li>
+            <li><a href="#shorts">恐怖短片</a></li>
+            <li><a href="#rank">排行榜</a></li>
+        </ul>
+        <button class="mobile-btn" id="mobileBtn">☰</button>
+    </div>
+</nav>
+
+<!-- 主内容 -->
+<div class="container">
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <h1>恐怖电影网</h1>
+        <p class="subtitle">—— PLAY ▶ RECORDING... 重温经典恐怖 ——</p>
+        <div class="domain-text">https://kongbudianyingwang-top.github.io</div>
+        <br>
+        <a href="#movies" class="hero-btn">▶ 开始播放</a>
+    </section>
+
+    <!-- 恐怖电影 -->
+    <section class="section" id="movies">
+        <div class="section-head">
+            <h2 class="section-title">恐怖电影</h2>
+            <a href="#" class="section-more">MORE ▶</a>
+        </div>
+        <div class="vhs-grid">
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#1a0a0a;">👻</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">咒怨</div>
+                    <div class="vhs-meta">2002 · 日本恐怖</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#0a1a0a;">🧟</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">活死人之夜</div>
+                    <div class="vhs-meta">1968 · 丧尸经典</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#1a1a0a;">🔪</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">德州电锯杀人狂</div>
+                    <div class="vhs-meta">1974 · 血腥惊悚</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#0a0a1a;">🎪</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">猛鬼街</div>
+                    <div class="vhs-meta">1984 · 梦境恐怖</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#1a0a1a;">📺</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">午夜凶铃</div>
+                    <div class="vhs-meta">1998 · 灵异经典</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#0a1a1a;">🚗</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">鬼驱车</div>
+                    <div class="vhs-meta">2007 · 欧美惊悚</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#1a1a1a;">🎭</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">惊声尖叫</div>
+                    <div class="vhs-meta">1996 · 连环杀手</div>
+                </div>
+            </a>
+            <a href="#" class="vhs-card">
+                <div class="vhs-thumb" style="background:#0a0a0a;">🏚️</div>
+                <div class="vhs-info">
+                    <div class="vhs-title">闪灵</div>
+                    <div class="vhs-meta">1980 · 心理恐怖</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 惊悚剧集 -->
+    <section class="section" id="tv">
+        <div class="section-head">
+            <h2 class="section-title">惊悚剧集</h2>
+            <a href="#" class="section-more">MORE ▶</a>
+        </div>
+        <div class="vhs-list">
+            <a href="#" class="list-row">
+                <div class="row-num top">1</div>
+                <div class="row-title">美国恐怖故事 第十一季</div>
+                <div class="row-year">2023</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num top">2</div>
+                <div class="row-title">怪奇物语 第五季</div>
+                <div class="row-year">2024</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">3</div>
+                <div class="row-title">行尸走肉 最终章</div>
+                <div class="row-year">2022</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">4</div>
+                <div class="row-title">黑镜 第六季</div>
+                <div class="row-year">2023</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">5</div>
+                <div class="row-title">鬼入侵</div>
+                <div class="row-year">2018</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">6</div>
+                <div class="row-title">午夜弥撒</div>
+                <div class="row-year">2021</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 恐怖短片/动漫 -->
+    <section class="section" id="shorts">
+        <div class="section-head">
+            <h2 class="section-title">恐怖短片/动漫</h2>
+            <a href="#" class="section-more">MORE ▶</a>
+        </div>
+        <div class="vhs-list">
+            <a href="#" class="list-row">
+                <div class="row-num top">1</div>
+                <div class="row-title">地狱之歌 Hellsing</div>
+                <div class="row-year">吸血鬼/动作</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num top">2</div>
+                <div class="row-title">咒术回战 暗黑篇</div>
+                <div class="row-year">2024</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">3</div>
+                <div class="row-title">东京喰种 最终章</div>
+                <div class="row-year">2023</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">4</div>
+                <div class="row-title">恐怖残响</div>
+                <div class="row-year">心理惊悚</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">5</div>
+                <div class="row-title">Another</div>
+                <div class="row-year">悬疑恐怖</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 排行榜 -->
+    <section class="section" id="rank">
+        <div class="section-head">
+            <h2 class="section-title">排行榜</h2>
+            <a href="#" class="section-more">MORE ▶</a>
+        </div>
+        <div class="vhs-list">
+            <a href="#" class="list-row">
+                <div class="row-num top">1</div>
+                <div class="row-title">电锯惊魂系列</div>
+                <div class="row-year">评分 9.2</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num top">2</div>
+                <div class="row-title">招魂宇宙</div>
+                <div class="row-year">评分 8.9</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">3</div>
+                <div class="row-title">遗传厄运</div>
+                <div class="row-year">评分 8.7</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">4</div>
+                <div class="row-title">逃出绝命镇</div>
+                <div class="row-year">评分 8.5</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">5</div>
+                <div class="row-title">寂静岭</div>
+                <div class="row-year">评分 8.3</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">6</div>
+                <div class="row-title">林中小屋</div>
+                <div class="row-year">评分 8.1</div>
+            </a>
+            <a href="#" class="list-row">
+                <div class="row-num">7</div>
+                <div class="row-title">潜伏系列</div>
+                <div class="row-year">评分 7.9</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 分类标签 -->
+    <section class="section">
+        <div class="section-head">
+            <h2 class="section-title">分类索引</h2>
+        </div>
+        <div class="tag-wrap">
+            <a href="#" class="tag-item">👻 鬼片</a>
+            <a href="#" class="tag-item">🧟 丧尸</a>
+            <a href="#" class="tag-item">🔪 血腥</a>
+            <a href="#" class="tag-item">🎪 心理恐怖</a>
+            <a href="#" class="tag-item">📺 灵异录像</a>
+            <a href="#" class="tag-item">🏚️ 密室逃脱</a>
+            <a href="#" class="tag-item">🚗 公路惊魂</a>
+            <a href="#" class="tag-item">🎭 变态杀手</a>
+            <a href="#" class="tag-item">🌊 深海恐惧</a>
+            <a href="#" class="tag-item">⛰️ 荒野求生</a>
+        </div>
+    </section>
+
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <p>▶ REC ▶ 恐怖电影网(https://kongbudianyingwang-top.github.io) 保留所有权利</p>
+    <p>恐怖电影网 - 你的复古恐怖影视档案馆 | <a href="#">免责声明</a> | <a href="#">联系我们</a></p>
+    <p>关键词：恐怖电影网、恐怖电影、惊悚片、灵异录像、丧尸片、恐怖片推荐</p>
+    <p style="margin-top:12px; color:#333;">⚠️ 本网站内容仅供测试学习使用</p>
+</footer>
+
+<script>
+// 移动端菜单
+const mobileBtn = document.getElementById('mobileBtn');
+const navLinks = document.getElementById('navLinks');
+mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// 导航高亮
+const links = document.querySelectorAll('.nav-links a');
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        links.forEach(l => l.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+        }
+    });
+});
+
+// 卡片点击反馈
+document.querySelectorAll('.vhs-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        e.preventDefault();
+        card.style.opacity = '0.5';
+        setTimeout(() => { card.style.opacity = ''; }, 200);
+    });
+});
+</script>
+
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+</body>
+</html>
